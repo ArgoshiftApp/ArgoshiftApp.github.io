@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argoshift - Mobile Apps Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --text-main: #2d3748;
+            --text-sub: #718096;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --accent-color: #3b82f6;
+            --badge-v2: #10b981;
+            --badge-soon: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand-logo-wrapper {
+            width: 110px;
+            height: 110px;
+            border-radius: 30px;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 8px 8px 16px var(--shadow-dark), 
+                        -8px -8px 16px var(--shadow-light);
+            padding: 10px;
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+            margin-bottom: 6px;
+        }
+
+        .brand-subtitle {
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+        }
+
+        .btn-dev-profile {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: var(--bg-color);
+            box-shadow: 6px 6px 12px var(--shadow-dark), 
+                        -6px -6px 12px var(--shadow-light);
+            transition: all 0.2s ease;
+        }
+
+        .btn-dev-profile:hover {
+            transform: translateY(-2px);
+        }
+
+        .apps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .app-card {
+            background: var(--bg-color);
+            border-radius: 25px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 8px 8px 16px var(--shadow-dark), 
+                        -8px -8px 16px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-wrapper {
+            position: relative;
+            width: 95px;
+            height: 95px;
+            border-radius: 22px;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), 
+                        inset -4px -4px 8px var(--shadow-light);
+            padding: 8px;
+        }
+
+        .app-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        .placeholder-icon {
+            font-size: 2rem;
+            color: var(--text-sub);
+            user-select: none;
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .badge-v2 { background-color: var(--badge-v2); }
+        .badge-soon { background-color: var(--badge-soon); }
+
+        .app-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .app-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: var(--bg-color);
+            box-shadow: 4px 4px 8px var(--shadow-dark), 
+                        -4px -4px 8px var(--shadow-light);
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .btn-action:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-action.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: inset 2px 2px 4px var(--shadow-dark), 
+                        inset -2px -2px 4px var(--shadow-light);
+            color: var(--text-sub);
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-logo-wrapper">
+            <img src="https://play-lh.googleusercontent.com/Ste2PfH7dN6Fo47IabwYNayPPV4HoIk6AKhwCDJMVhGZELVSgCjMw36N0AwGL1W5zw=s188-rw" alt="Argoshift Logo" class="brand-logo">
+        </div>
+        <h1 class="brand-title">Argoshift</h1>
+        <p class="brand-subtitle">Official Mobile Applications & Privacy Utilities Studio</p>
+        <a href="https://play.google.com/store/apps/dev?id=5701450599573327879" target="_blank" class="btn-dev-profile">
+            <span>View Store Profile</span> ➔
+        </a>
+    </header>
+
+    <main class="apps-container">
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-v2">V2</span>
+                <img src="https://play-lh.googleusercontent.com/N8n1AAegy2dUn_UTL2IJU78WHAqIzPdF4fmhwPZbg2riP7NC6SQ9i0Zztely63WFmtRDxU0nNcxFE1fuRbZ0pw=w480-h960" alt="PliPhoto Icon" class="app-icon">
+            </div>
+            <h2 class="app-name">PliPhoto</h2>
+            <p class="app-desc">EXIF Metadata cleaner with interactive GPS map viewer & privacy tools.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.argoshift.pliphoto" target="_blank" class="btn-action">
+                Get on Google Play
+            </a>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <img src="https://play-lh.googleusercontent.com/wMM8SpJVA9ZBG6U7lno-DvHdXOXpazQp8LtxNnA5TELHTvgv_YaSlREpbpSrobDdZGDfLV3ybEccqItJO44a=s256-rw" alt="Phonon Icon" class="app-icon">
+            </div>
+            <h2 class="app-name">Phonon</h2>
+            <p class="app-desc">Sound & speaker cleaner utility to eject trapped water and dust.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.argoshift.phonon" target="_blank" class="btn-action">
+                Get on Google Play
+            </a>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <img src="https://play-lh.googleusercontent.com/XehJg4Zdi1E3TtYpnTXjBA3qK9vTtbVNU2FA2GdWVeZtoqhTwOP1fSn6QuQI_MOoI2ByCsQIQy8uT9WIvVXVOew=s256-rw" alt="Vibrat-X Icon" class="app-icon">
+            </div>
+            <h2 class="app-name">Vibrat-X</h2>
+            <p class="app-desc">Custom vibration patterns for body relaxation and tactile testing.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.argoshift.vibratx" target="_blank" class="btn-action">
+                Get on Google Play
+            </a>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <img src="https://play-lh.googleusercontent.com/tq21MD9WDy4s2LizIZWS1IThtcvXDwufb5SjesJwdYuM1SbVLKwX9sYEmhaLOt5K41CvXnl5ZNCXiuhL4CB4=s256-rw" alt="Mosquito Icon" class="app-icon">
+            </div>
+            <h2 class="app-name">Mosquito Sound</h2>
+            <p class="app-desc">Frequency sound wave generator utility for insect repelling.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.argoshift.mosquito" target="_blank" class="btn-action">
+                Get on Google Play
+            </a>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <img src="https://play-lh.googleusercontent.com/GSUShUsimicInoZ1zDS6UICcp1Bn4UrqzZlAKuMEFOzGl4F1r3vXJqBVRKXxphBHo9IRMJSZBC5Crb-gmF3w2A=s256-rw" alt="MyAnime Icon" class="app-icon">
+            </div>
+            <h2 class="app-name">Anime Tracker Pro</h2>
+            <p class="app-desc">Anime discovery and tracking utility for enthusiasts.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.argoshift.myanime" target="_blank" class="btn-action">
+                Get on Google Play
+            </a>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">👏</div>
+            </div>
+            <h2 class="app-name">Clap & Whistle</h2>
+            <p class="app-desc">Phone finder & anti-theft alert triggered by sound recognition.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">🔍</div>
+            </div>
+            <h2 class="app-name">SpyCatch</h2>
+            <p class="app-desc">Hidden spy camera & electronic device detection utility.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">🔦</div>
+            </div>
+            <h2 class="app-name">FlashKit</h2>
+            <p class="app-desc">LED torch light with custom strobe frequencies and SOS signals.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">🎂</div>
+            </div>
+            <h2 class="app-name">Heorti</h2>
+            <p class="app-desc">Birthday facts, historical trivia, and age analytics tool.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">📻</div>
+            </div>
+            <h2 class="app-name">Pure Radio Pro</h2>
+            <p class="app-desc">High-quality online radio streaming with local favorite management.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+        <div class="app-card">
+            <div class="icon-wrapper">
+                <span class="badge badge-soon">SOON</span>
+                <div class="placeholder-icon">📺</div>
+            </div>
+            <h2 class="app-name">Pure Tv Pro</h2>
+            <p class="app-desc">Streamlined TV channel discovery and streaming player.</p>
+            <span class="btn-action disabled">In Review / Testing</span>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Argoshift. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
